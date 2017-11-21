@@ -10,7 +10,7 @@ public class WritableSummRun {
 
         while (true) {
             System.out.print("Введите число: ");
-            long userInput  = sc.nextLong();
+            String userInput  = sc.next();
 
             System.out.println(userInput  + "\t" + w.numberToString(userInput ));
         }

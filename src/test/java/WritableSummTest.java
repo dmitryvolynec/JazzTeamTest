@@ -18,11 +18,11 @@ public class WritableSummTest {
 
     @Test
     public void testNumberToString() throws Exception {
-        String[] stringsFromOneTwenty = {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать",
+        String[] stringsFromOneTwenty = {"ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать",
                 "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать",
                 "двадцать"};
         for (int i = 0; i < 20; i++) {
-            assertEquals(stringsFromOneTwenty[i], w.numberToString(i));
+            assertEquals(stringsFromOneTwenty[i], w.numberToString(String.valueOf(i)));
         }
     }
 
@@ -59,7 +59,7 @@ public class WritableSummTest {
                 }
             }
             System.out.println();
-            assertEquals(inString, w.numberToString(inNumber));
+            assertEquals(inString, w.numberToString(String.valueOf(inNumber)));
         }
     }
 }

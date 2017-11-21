@@ -1,8 +1,9 @@
+import java.math.BigInteger;
 
 class WritableSumm {
 
     final String[][] stringsFromOneToNine = {
-            {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
+            {"ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
             {"", "одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
     };
     final String[] stringsHundreds = {"", "сто", "двести", "триста", "четыреста", "пятьсот",
@@ -42,6 +43,10 @@ class WritableSumm {
     protected int getUnitGender(int idx) {
         return new Integer(forms[idx][3]);
     }
+public int performModOperation(BigInteger num){
+     BigInteger numMod = num.mod(new BigInteger("1000"));
+    return numMod.intValue() ;
+}
 
     protected String getUnit(int idx, int cnt) {
         if (cnt % 100 > 4 && cnt % 100 < 21)
@@ -76,17 +81,17 @@ class WritableSumm {
         return res;
     }
 
-    public String numberToString(long num) {
-
+    public String numberToString(String num) {
+        BigInteger bigNum = new BigInteger(num);
         String res = "";
-        if (num == 0 ) {
+        if (bigNum.compareTo(BigInteger.ZERO) == 0 ) {
             res = getStringsFromOneToNine(0, 0) + " " + getUnit(1, 0);
         }
         int idx = 1;
-        while (num > 0) {
-            String triad = triadToString((int) (num % 1000), getUnitGender(idx), idx < 1);
-            res = triad + getUnit(idx, (int)(num % 1000)) + " " + res;
-            num = num / 1000;
+        while (bigNum.compareTo(BigInteger.ZERO) > 0) {
+            String triad = triadToString( performModOperation(bigNum), getUnitGender(idx), idx < 1);
+            res = triad + getUnit(idx, performModOperation(bigNum)) + " " + res;
+            bigNum = bigNum.divide(new BigInteger("1000"));
             idx++;
         }
         return res.trim();
